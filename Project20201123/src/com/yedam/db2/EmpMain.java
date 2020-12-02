@@ -3,8 +3,6 @@ package com.yedam.db2;
 import java.util.List;
 import java.util.Scanner;
 
-import com.yedam.board.BoardVO;
-import com.yedam.db.EmpDAO;
 import com.yedam.db.Employee;
 
 public class EmpMain {
@@ -14,9 +12,9 @@ public class EmpMain {
 		EmpService service = new EmpServiceImpl();
 
 		while (true) {
-			System.out.println("---------------------------------------------------");
-			System.out.println("1. 전체조회 2. 한 건 조회 3. 입력 4. 수정 5. 삭제");
-			System.out.println("---------------------------------------------------");
+			System.out.println("------------------------------------------------------------------------------");
+			System.out.println("① 전체조회 ② 한 건 조회 ③ 입력 ④ 수정 ⑤ 삭제 ⑥ 부서별 조회 ⑦ 종료");
+			System.out.println("------------------------------------------------------------------------------");
 			System.out.print("선택> ");
 			int selectNo = scn.nextInt();
 			if (selectNo == 1) {
@@ -50,7 +48,7 @@ public class EmpMain {
 				vo.setEmail(email);
 				vo.setHireDate(hireDate);
 				vo.setJobId(jobId);
-				
+
 				service.insertEmp(vo);
 
 			} else if (selectNo == 4) {
@@ -71,16 +69,29 @@ public class EmpMain {
 				vo.setSalary(salary);
 
 				service.updateEmp(vo);
-			}else if (selectNo == 5) {
+			} else if (selectNo == 5) {
 				System.out.println("삭제할 사원번호를 입력: ");
 				int empId = scn.nextInt();
 				scn.nextLine();
 
 				EmployeeVO vo = new EmployeeVO();
 				vo.setEmployeeId(empId);
-				
+
 				service.deleteEmp(vo);
+			} else if (selectNo == 6) {
+				System.out.println("찾을 부서를 입력: ");
+				scn.nextLine();
+				String dept = scn.nextLine();
+
+				List list = service.getDeptList(dept);
+				for (Object vo : list) {
+					EmployeeVO emp = (EmployeeVO) vo;
+					emp.showEmpInfo();
+				}
+			} else if (selectNo == 7) {
+				break;
 			}
 		}
+		System.out.println("프로그램을 종료합니다.");
 	}
 }

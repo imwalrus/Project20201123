@@ -9,15 +9,18 @@ public class EmployeeVO {
 	private String hireDate;
 	private String jobId;
 	private int salary;
+	private Object departmentid;
 
 	public EmployeeVO() {
 
 	}
 
-	public EmployeeVO(String firstName, String lastName) {
+	public EmployeeVO(String lastName, String email, String hireDate, String jobId) {
 		super();
-		this.firstName = firstName;
 		this.lastName = lastName;
+		this.email = email;
+		this.hireDate = hireDate;
+		this.jobId = jobId;
 	}
 
 	public int getEmployeeId() {
@@ -85,8 +88,17 @@ public class EmployeeVO {
 	}
 
 	public void showEmpInfo() {
-		System.out.println("사원번호: " + empId + ", firstName: " + firstName + ", lastName: " + lastName);
+		String department = null;
+		System.out.println(
+				"사원번호: " + empId + ", firstName: " + firstName + ", lastName: " + lastName);
 	}
 
-	
+	public void setDepartment(String departments) {
+
+	}
+
+	public void setDepartment_id(String string) {
+		this.departmentid = departmentid;
+	}
+
 }

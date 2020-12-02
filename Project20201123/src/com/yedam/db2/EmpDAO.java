@@ -125,4 +125,27 @@ public class EmpDAO {
 			}
 		}
 	}
+
+	// 부서별 조회
+	public List<EmployeeVO> getDeptList(String dept) {
+		conn = DAO.getConnection();
+		sql = "select * from emp1 e, departments d where e.department_id = d.department_id and d.department_name = ?";
+		ArrayList list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dept);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				EmployeeVO vo = new EmployeeVO();
+				vo.setEmployeeId(rs.getInt("employee_id"));
+				vo.setDepartment_id(rs.getString("department_id"));
+				vo.setFirstName(rs.getString("first_name"));
+				vo.setLastName(rs.getString("last_name"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 public class EmpServiceImpl implements EmpService {
 
-		EmpDAO dao = new EmpDAO();
-		
+	EmpDAO dao = new EmpDAO();
+
 	@Override
 	public List getEmpList() {
 		return dao.getEmpList();
@@ -18,17 +18,22 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public void insertEmp(EmployeeVO empVo) {
-			dao.insertEmp(empVo);
+		dao.insertEmp(empVo);
 	}
 
 	@Override
 	public void updateEmp(EmployeeVO empVo) {
-			dao.updateEmp(empVo);
+		dao.updateEmp(empVo);
 	}
-	
+
 	@Override
 	public void deleteEmp(EmployeeVO empVo) {
-			dao.deleteEmp(empVo);
+		dao.deleteEmp(empVo);
+	}
+
+	@Override
+	public List<EmployeeVO> getDeptList(String dept) {
+		return dao.getDeptList(dept);
 	}
 
 }

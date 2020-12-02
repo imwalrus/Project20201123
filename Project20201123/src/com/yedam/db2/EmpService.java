@@ -13,5 +13,7 @@ public interface EmpService {
 	public void updateEmp(EmployeeVO empVo); // 수정
 
 	public void deleteEmp(EmployeeVO empVo); // 삭제
+	
+	public List<EmployeeVO> getDeptList(String dept); // 부서별 조회
 
 }
